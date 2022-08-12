@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html lang="">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+   	<title>DDMG | Preloader</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    <link type="text/css" href="assets/css/font-awesome.css" rel="stylesheet"/>
+    <link type="text/css" href="assets/css/ionicons.min.css" rel="stylesheet"/>
+    <link type="text/css" href="style.css" rel="stylesheet"/>
+</head>
+<body>
+	<div id="wrapper"><!--strat wrapper-->
+        <div class="preloader_area">
+            <div class="page-transition">
+              <div class="div"></div>
+              <div class="div"></div>
+              <div class="div"></div>
+              <div class="div"></div>
+              <ul class="preload">
+                <li><img src="assets/images/D1.png" alt=""></li>
+                <li><img src="assets/images/D2.png" alt=""></li>
+                <li><img src="assets/images/M.png" alt=""></li>
+                <li><img src="assets/images/G.png" alt=""></li>
+              </ul>
+            </div>
+        </div>
+        
+    </div><!--//end #wrapper-->
+    
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/TweenMax.min.js"></script>
+    <script src="assets/js/custom.js"></script>
+    <script>
+        (function($){
+            var preLoderLi = $('.preload li'),
+              pageDiv = $('.page-transition .div'),
+              slideDown = new TimelineMax({paused : true}),
+              loading = new TimelineMax({paused : true , repeat : 2}),
+              slideUp = new TimelineMax({paused : true}),
+              loadAnimation = new TimelineMax({repeat : -1});
+              slideDown.staggerTo(pageDiv , 0.5 ,{
+                bottom : "0%" ,
+                ease : Power2.easeIn
+              }, 0.2);
+              loading.staggerFrom(preLoderLi, 0.5 ,{
+                y : -15,
+                autoAlpha : 0,
+                ease : Power1.easeIn
+              },0.2)
+              .staggerTo(preLoderLi , 0.5,{
+                y : 35,
+                autoAlpha : 0,
+                ease : Power1.easeIn
+              },0.1);
+               slideUp.staggerTo(pageDiv , 0.5 ,{
+                bottom : "100%" ,
+                ease : Power2.easeOut
+              }, 0.2);
+              loadAnimation.add(slideDown.play(), 0.5)
+               .add(loading.play())
+               .add(slideUp.play());
+        })(jQuery);
+
+    </script>
+</body>
+</html>
